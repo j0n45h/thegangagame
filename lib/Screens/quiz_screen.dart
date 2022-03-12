@@ -90,7 +90,7 @@ class _QuizScreenState extends State<QuizScreen> {
       return;
     }
 
-    if (!await Checker.checkIfUserIsNew()) {
+    if (!await Checker.checkIfUserIsNewFp()) {
       setState(() => _state = PageState.userHasBeenHere);
       return;
     }
