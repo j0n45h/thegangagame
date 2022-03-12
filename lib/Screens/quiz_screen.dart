@@ -1,8 +1,4 @@
-import 'dart:html';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:thegangagame/Util/checker.dart';
 import 'package:thegangagame/Util/url_loader.dart';
 
@@ -13,11 +9,26 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
   final _answerTfController = TextEditingController();
   bool wrongAnswer = false;
   bool userIsNew = true;
   PageState _state = PageState.notGuessed;
+  late AnimationController _loadingController;
+
+  @override
+  void initState() {
+    _loadingController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    )..addListener(() {
+      if (_state == PageState.loading) {
+        setState(() {});
+      }
+    });
+    _loadingController.repeat();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +45,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text("The Answer was Wrong! Please try again.",
+                        textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.red, fontSize: 32)),
                     SizedBox(height: 50),
                   ]),
@@ -43,6 +55,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Enter your Answer!",
+                      textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.black, fontSize: 32)),
                   const SizedBox(height: 50),
                   SizedBox(
@@ -57,20 +70,23 @@ class _QuizScreenState extends State<QuizScreen> {
                 ],
               ),
             if (_state == PageState.userHasBeenHere)
-              const Center(
-                child: Text("You have been here before!",
-                    style: TextStyle(color: Colors.red, fontSize: 42)),
-              ),
+              const Text("You have been here before!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.red, fontSize: 42)),
             if (_state == PageState.noInvitesLeft)
-              const Center(
-                child: Text(
-                    "Sorry, you are too late. The Discord channel is full",
-                    style: TextStyle(color: Colors.red, fontSize: 42)),
-              ),
+              const Text(
+                  "Sorry, you are too late. The Discord channel is full",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.red, fontSize: 42)),
             if (_state == PageState.success)
-              const Center(
-                child: Text("Congratulations your answer was correct!",
-                    style: TextStyle(color: Colors.red, fontSize: 42)),
+              const Text("Congratulations your answer was correct!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.red, fontSize: 42)),
+            if (_state == PageState.loading)
+              CircularProgressIndicator(
+                value: _loadingController.value,
+                color: Colors.blue,
+                semanticsLabel: 'Loading...',
               ),
             const SizedBox(height: 10),
           ],
@@ -80,6 +96,8 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   Future<void> _submit(String answer) async {
+    setState(() => _state = PageState.loading);
+
     if (answer.length > 50) {
       setState(() => _state = PageState.wrongAnswer);
       return;
@@ -105,6 +123,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void dispose() {
     _answerTfController.dispose();
+    _loadingController.dispose();
     super.dispose();
   }
 }
@@ -114,5 +133,6 @@ enum PageState {
   wrongAnswer,
   userHasBeenHere,
   noInvitesLeft,
+  loading,
   success
 }
