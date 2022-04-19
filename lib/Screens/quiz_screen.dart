@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:thegangagame/Screens/redirect_screen.dart';
 import 'package:thegangagame/Util/checker.dart';
-import 'package:thegangagame/Util/url_loader.dart';
+import 'package:rive/rive.dart';
+import 'package:thegangagame/Util/redirector.dart';
 
 class QuizScreen extends StatefulWidget {
+  static const routeName = "/";
   const QuizScreen({Key? key}) : super(key: key);
 
   @override
@@ -11,10 +15,11 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
   final _answerTfController = TextEditingController();
-  bool wrongAnswer = false;
-  bool userIsNew = true;
   PageState _state = PageState.notGuessed;
   late AnimationController _loadingController;
+
+  Artboard? _riveArtboard;
+  RiveAnimationController? _riveAnimationController;
 
   @override
   void initState() {
@@ -27,6 +32,16 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       }
     });
     _loadingController.repeat();
+
+
+    rootBundle.load("assets/Circle1.riv").then((data) {
+      final file = RiveFile.import(data);
+      _riveArtboard = file.mainArtboard;
+
+      _riveArtboard?.addController(_riveAnimationController = SimpleAnimation('Animation 1'));
+      setState(() {});
+    });
+
     super.initState();
   }
 
@@ -40,6 +55,16 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 300,
+                width: 300,
+                child: _riveArtboard == null
+                    ? const SizedBox()
+                    : Rive(artboard: _riveArtboard!),
+              ),
+            ),
             if (_state == PageState.wrongAnswer)
               Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -69,19 +94,6 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                   ),
                 ],
               ),
-            if (_state == PageState.userHasBeenHere)
-              const Text("You have been here before!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.red, fontSize: 42)),
-            if (_state == PageState.noInvitesLeft)
-              const Text(
-                  "Sorry, you are too late. The Discord channel is full",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.red, fontSize: 42)),
-            if (_state == PageState.success)
-              const Text("Congratulations your answer was correct!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.red, fontSize: 42)),
             if (_state == PageState.loading)
               CircularProgressIndicator(
                 value: _loadingController.value,
@@ -108,16 +120,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       return;
     }
 
-    if (!await Checker.checkIfUserIsNewFp()) {
-      setState(() => _state = PageState.userHasBeenHere);
-      return;
-    }
-    if (!await UrlLoader.tryLoadDiscord()) {
-      setState(() => _state = PageState.noInvitesLeft);
-      return;
-    }
-
-    setState(() => _state = PageState.success);
+    Navigator.of(context).pushNamed(RedirectScreen.routeName);
   }
 
   @override
@@ -132,7 +135,7 @@ enum PageState {
   notGuessed,
   wrongAnswer,
   userHasBeenHere,
-  noInvitesLeft,
+  noInviteLeft,
   loading,
   success
 }

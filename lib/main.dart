@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: false,
   );
   runApp(const MyApp());
 }
@@ -31,7 +35,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const QuizScreen(),
+      routes: {
+        //QuizScreen.routeName: (_) => const QuizScreen(),
+        QuizScreen.routeName: (_) => const QuizScreen(),
+        RedirectScreen.routeName: (_) => const RedirectScreen(),
+      },
     );
   }
 }
