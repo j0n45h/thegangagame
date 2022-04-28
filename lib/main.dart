@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: FirstQuiz.routeName,
+      initialRoute: ThirdQuiz.routeName,
       routes: {
         FirstQuiz.routeName: (_) => const FirstQuiz(),
         SecondQuiz.routeName: (_) => const SecondQuiz(),

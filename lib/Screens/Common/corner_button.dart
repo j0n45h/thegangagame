@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class CornerButton extends StatelessWidget {
   final Function onPressed;
-  final Widget? child;
+  late Widget child;
 
-  const CornerButton({required this.onPressed, this.child, Key? key})
-      : super(key: key);
+   CornerButton({required this.onPressed, Widget? child, Key? key})
+      : super(key: key){
+        this.child=child??Text('');
+      }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class CornerButton extends StatelessWidget {
       child: SizedBox(
         width: 38,
         height: 38,
-        child: ElevatedButton(
+        child: TextButton(
           onPressed: () => onPressed(),
           child: child,
           style: ButtonStyle(
