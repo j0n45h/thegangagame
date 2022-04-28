@@ -18,7 +18,7 @@ class Rectangles extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           const RiveAnimation.asset(
-            'assets/rechteck2.riv',
+            'assets/Quiz_3/rechteck2.riv',
             fit: BoxFit.scaleDown,
           ),
           Positioned(

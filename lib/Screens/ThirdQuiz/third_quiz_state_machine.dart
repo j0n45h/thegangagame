@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:thegangagame/Screens/FirstQuiz/rectangles.dart';
+import 'package:thegangagame/Screens/ThirdQuiz/rectangles.dart';
 
-class FirstQuizStateMachine extends StatefulWidget {
-  const FirstQuizStateMachine({Key? key}) : super(key: key);
+class ThirdQuizStateMachine extends StatefulWidget {
+  const ThirdQuizStateMachine({Key? key}) : super(key: key);
 
   @override
-  State<FirstQuizStateMachine> createState() => _FirstQuizStateMachineState();
+  State<ThirdQuizStateMachine> createState() => _ThirdQuizStateMachineState();
 }
 
-class _FirstQuizStateMachineState extends State<FirstQuizStateMachine> {
+class _ThirdQuizStateMachineState extends State<ThirdQuizStateMachine> {
   SMITrigger? _bump1;
   SMITrigger? _bump2;
   SMITrigger? _bump3;
@@ -36,7 +36,7 @@ class _FirstQuizStateMachineState extends State<FirstQuizStateMachine> {
         alignment: Alignment.center,
         children: <Widget>[
           RiveAnimation.asset(
-            'assets/game (1).riv',
+            'assets/Quiz_3/game (1).riv',
             fit: BoxFit.fill,
             onInit: _onRiveInit,
           ),

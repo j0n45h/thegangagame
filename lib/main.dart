@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:thegangagame/Screens/FirstQuiz/fisrt_quiz.dart';
+import 'package:thegangagame/Screens/FirstQuiz/first_quiz.dart';
+import 'package:thegangagame/Screens/ThirdQuiz/third_quiz.dart';
 import 'package:thegangagame/Screens/redirect_screen.dart';
 import 'Screens/SecondQuiz/second_quiz.dart';
 import 'firebase_options.dart';
@@ -29,9 +30,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      initialRoute: FirstQuiz.routeName,
       routes: {
+        FirstQuiz.routeName: (_) => const FirstQuiz(),
         SecondQuiz.routeName: (_) => const SecondQuiz(),
-        //FirstQuiz.routeName: (_) => const FirstQuiz(),
+        ThirdQuiz.routeName: (_) => const ThirdQuiz(),
+        
         //QuizScreen.routeName: (_) => const QuizScreen(),
         RedirectScreen.routeName: (_) => const RedirectScreen(),
       },
