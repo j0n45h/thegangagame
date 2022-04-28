@@ -14,7 +14,7 @@ class FirstQuiz extends StatelessWidget {
       body: Stack(
         children: [
           Background(),
-          FirstQuizStateMachine(),
+          const FirstQuizStateMachine(),
           Positioned(
             left: MediaQuery.of(context).size.width * 0.3,
             top: MediaQuery.of(context).size.height * 0.5 -
