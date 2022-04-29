@@ -6,7 +6,7 @@ class Rectangles extends StatelessWidget {
   final List<Function> activators;
 
   Rectangles({required this.activators, Key? key}) : super(key: key) {
-    RangeError.range(activators.length, 3, 3);
+    RangeError.range(activators.length, 4, 4);
   }
 
   @override
@@ -32,9 +32,14 @@ class Rectangles extends StatelessWidget {
             child: CornerButton(onPressed: activators[1]),
           ),
           Positioned(
-            right: MediaQuery.of(context).size.width * 0.03,
+            right: MediaQuery.of(context).size.width * 0.037,
             bottom: MediaQuery.of(context).size.width * 0.07,
             child: CornerButton(onPressed: activators[2]),
+          ),
+          Positioned(
+            right: MediaQuery.of(context).size.width * 0.105,
+            top: MediaQuery.of(context).size.width * 0.001,
+            child: CornerButton(onPressed: activators[3]),
           ),
         ],
       ),

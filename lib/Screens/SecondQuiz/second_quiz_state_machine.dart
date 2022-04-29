@@ -17,27 +17,27 @@ class _SecondQuizStateMachineState extends State<SecondQuizStateMachine> {
         children: [
           Container(
             margin: const EdgeInsets.only(top: 100),
-            height: 300,
-            width: 4*300,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width,
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget>[
+              children:  <Widget>[
                 SizedBox(
-                    width: 300,
-                    height: 300,
+                    width: MediaQuery.of(context).size.width*0.16,
+                    height: MediaQuery.of(context).size.width*0.16,
                     child: RiveAnimation.asset('assets/Quiz_2/circle1.riv')),
                 SizedBox(
-                    width: 300,
-                    height: 300,
+                    width: MediaQuery.of(context).size.width*0.16,
+                    height: MediaQuery.of(context).size.width*0.16,
                     child: RiveAnimation.asset('assets/Quiz_2/circle2.riv')),
                 SizedBox(
-                    width: 300,
-                    height: 300,
+                    width: MediaQuery.of(context).size.width*0.16,
+                    height: MediaQuery.of(context).size.width*0.16,
                     child: RiveAnimation.asset('assets/Quiz_2/circle3-1.riv')),
                 SizedBox(
-                    width: 300,
-                    height: 300,
+                    width: MediaQuery.of(context).size.width*0.16,
+                    height: MediaQuery.of(context).size.width*0.16,
                     child: RiveAnimation.asset('assets/Quiz_2/circle4-1.riv')),
               ],
             ),

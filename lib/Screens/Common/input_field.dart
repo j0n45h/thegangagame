@@ -42,13 +42,14 @@ class _InputFielder extends State<InputField> {
             height: 25,
             width: Size.infinite.width,
             decoration: BoxDecoration(
+              //border: Border.all(color: Color(0xFFF0E417,
               borderRadius: const BorderRadius.all(Radius.circular(20)),
-              color: _correct ? Colors.greenAccent : Colors.indigoAccent,
+              color: _correct ? Color(0xFFF0E417) : Colors.transparent,
             ),
             child: Center(
               child: Text(
                 _feedback,
-                style: TextStyle(color: _correct ? Colors.black : Colors.white, fontSize: 20),
+                style: TextStyle(color: _correct ? Colors.black : Colors.white, fontSize: 20, fontFamily: 'NovaSquare'),
               ),
             ),
           ),
@@ -60,12 +61,13 @@ class _InputFielder extends State<InputField> {
             focusNode: _focusNode,
             autoDismissKeyboard: true,
             controller: _textController,
-            textStyle: const TextStyle(color: Colors.white),
+            textStyle: const TextStyle(color: Colors.white, fontSize: 40,fontFamily: 'NovaSquare'),
             pinTheme: PinTheme(
               fieldHeight: MediaQuery.of(context).size.height * 0.07,
               fieldWidth: MediaQuery.of(context).size.width * 0.07,
-              activeColor: Colors.indigo,
-              inactiveColor: Colors.indigoAccent.withOpacity(0.3),
+              activeColor: Color(0xFFF0E417),
+              selectedColor: Color(0xFFF0E417),
+              inactiveColor: Colors.white
             ),
             inputFormatters: [
               UpperCaseTextFormatter(),

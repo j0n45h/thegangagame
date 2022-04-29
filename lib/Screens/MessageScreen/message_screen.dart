@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:thegangagame/Screens/Common/background.dart';
-import 'package:thegangagame/Screens/SecondQuiz/second_quiz_state_machine.dart';
-import 'package:thegangagame/Screens/Common/input_field2.dart';
+import 'package:thegangagame/Screens/MessageScreen/message.dart';
 
-class SecondQuiz extends StatelessWidget {
-  static const String routeName = "/firstquiz/secondquiz";
 
-  const SecondQuiz({Key? key}) : super(key: key);
+class MessageScreen extends StatelessWidget {
+  static const String routeName = "/firstquiz/secondquiz/thirdquiz/messagescreen";
+
+  const MessageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,7 @@ class SecondQuiz extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Background(assetPath: 'assets/Quiz_2/FirstPost(QueerFormat)Kopie.svg'),
-          SecondQuizStateMachine(),
-          InputField2()
+          Message()
         ],
       ),
     );

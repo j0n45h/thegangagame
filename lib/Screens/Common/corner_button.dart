@@ -16,13 +16,14 @@ class CornerButton extends StatelessWidget {
     return Transform.rotate(
       angle: pi / 2.8,
       child: SizedBox(
-        width: 38,
-        height: 38,
+        height: MediaQuery.of(context).size.width*0.02,
+        width: MediaQuery.of(context).size.width*0.02,
         child: TextButton(
           onPressed: () => onPressed(),
           child: child,
+          
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            backgroundColor: MaterialStateProperty.all(Colors.blue),
           ),
         ),
       ),

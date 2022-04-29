@@ -13,7 +13,7 @@ class ThirdQuiz extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Background(assetPath:'assets/Quiz_3/ThirdPost(QueerFormat)Kopie.svg'),
+          Background(assetPath:'assets/Quiz_3/SecondtPost(QueerFormat)Kopie.svg'),
           const ThirdQuizStateMachine(),
           Positioned(
             left: MediaQuery.of(context).size.width * 0.3,

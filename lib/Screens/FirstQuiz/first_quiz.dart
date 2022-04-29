@@ -80,7 +80,7 @@ class _FirstQuizState extends State<FirstQuiz> {
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 child: SvgPicture.asset(
-                'assets/Quiz_1/FirstPost(QueerFormat)Kopie.svg',
+                'assets/Quiz_1/ThirdPost(QueerFormat)Kopie.svg',
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 fit: BoxFit.fill,

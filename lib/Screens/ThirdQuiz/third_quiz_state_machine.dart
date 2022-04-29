@@ -13,6 +13,7 @@ class _ThirdQuizStateMachineState extends State<ThirdQuizStateMachine> {
   SMITrigger? _bump1;
   SMITrigger? _bump2;
   SMITrigger? _bump3;
+  SMITrigger? _bump4;
 
   void _hitBump1() => _bump1?.fire();
 
@@ -20,13 +21,16 @@ class _ThirdQuizStateMachineState extends State<ThirdQuizStateMachine> {
 
   void _hitBump3() => _bump3?.fire();
 
+  void _hitBump4() => _bump4?.fire();
+
   void _onRiveInit(Artboard artboard) {
     final controller =
         StateMachineController.fromArtboard(artboard, 'State Machine 1');
     artboard.addController(controller!);
-    _bump1 = controller.findInput<bool>('T1') as SMITrigger;
-    _bump2 = controller.findInput<bool>('T2') as SMITrigger;
-    _bump3 = controller.findInput<bool>('T3') as SMITrigger;
+    _bump1 = controller.findInput<bool>('T0') as SMITrigger;
+    _bump2 = controller.findInput<bool>('T1') as SMITrigger;
+    _bump3 = controller.findInput<bool>('T2') as SMITrigger;
+    _bump4 = controller.findInput<bool>('T3') as SMITrigger;
   }
 
   @override
@@ -36,7 +40,7 @@ class _ThirdQuizStateMachineState extends State<ThirdQuizStateMachine> {
         alignment: Alignment.center,
         children: <Widget>[
           RiveAnimation.asset(
-            'assets/Quiz_3/game (1).riv',
+            'assets/Quiz_3/gameNew.riv',
             fit: BoxFit.fill,
             onInit: _onRiveInit,
           ),
@@ -45,7 +49,7 @@ class _ThirdQuizStateMachineState extends State<ThirdQuizStateMachine> {
             margin: const EdgeInsets.only(bottom: 60),
             width: MediaQuery.of(context).size.width * 0.5,
             child: Rectangles(
-              activators: [_hitBump1, _hitBump2, _hitBump3],
+              activators: [_hitBump1, _hitBump2, _hitBump3, _hitBump4],
             ),
           ),
         ],
