@@ -81,6 +81,22 @@ class Message extends StatelessWidget {
                     ],
                   ),
             ),
+            Positioned(
+              bottom: 100,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                        side: BorderSide(color: Color(0xFFF0E417)),
+                        primary: Colors.transparent,
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        textStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)
+                ), 
+                child: Text('Continue', style: TextStyle(color: Color(0xFFF0E417))
+                ),
+                onPressed: null,
+              )
+            )
       ]
     );
   }
