@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FirstQuiz extends StatefulWidget {
-  static const String routeName = "/firstquiz";
+  static const String routeName = "/videoscreen/messagescreen/firstquiz";
   const FirstQuiz({ Key? key }) : super(key: key);
 
   @override
@@ -132,6 +132,8 @@ class _FirstQuizState extends State<FirstQuiz> {
                                   if (value==requiredValue || value ==requiredValue2 ) {
                                   feedback = 'Correct!';
                                   print(feedback);
+                                  Navigator.pushNamed(context,"/videoscreen/messagescreen/firstquiz/secondquiz");
+
                                 } else {
                                   feedback = 'wrong!';
                                   print('wrong!');

@@ -107,6 +107,8 @@ class _InputFielder extends State<InputField2>  {
                               if (value==requiredValue) {
                               feedback = 'Correct';
                               print(feedback);
+                              Navigator.pushNamed(context,"/videoscreen/messagescreen/firstquiz/secondquiz/thirdquiz");
+
                             } else {
                               feedback = 'False';
                               print('wrong!');

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:thegangagame/Screens/Common/background.dart';
 import 'package:thegangagame/Screens/MessageScreen/message.dart';
+import 'package:thegangagame/Screens/Video/video.dart';
 
 
-class MessageScreen extends StatelessWidget {
-  static const String routeName = "/videoscreen/messagescreen";
+class VideoScreen extends StatelessWidget {
+  static const String routeName = "/videoscreen";
 
-  const MessageScreen({Key? key}) : super(key: key);
+  const VideoScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class MessageScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Background(assetPath: 'assets/Quiz_2/FirstPost(QueerFormat)Kopie.svg'),
-          Message()
+          VideoPlayer1()
         ],
       ),
     );

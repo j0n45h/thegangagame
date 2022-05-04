@@ -70,8 +70,8 @@ class Message extends StatelessWidget {
                       RichText(
                         textAlign: TextAlign.center,
                         text:TextSpan(
-                                text: '\n Good Luck, and remember: Always seize the opportunity to grow beyond the strings.',
-                                style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width*0.013, fontFamily: 'NovaSquare'),
+                                text: '\n \n  Good Luck, and remember: Always seize the opportunity to grow beyond the strings.',
+                                style: TextStyle(color: Colors.white, fontSize: MediaQuery.of(context).size.width*0.007, fontFamily: 'NovaSquare'),
                                 children: <TextSpan>[
                                   TextSpan(text: '', style: TextStyle(color: Color(0xFFF0E417), fontSize: 35,fontFamily: 'NovaSquare')),
                                   TextSpan(text: '', style: TextStyle(color: Colors.white, fontSize: 35,fontFamily: 'NovaSquare'))
@@ -92,9 +92,11 @@ class Message extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.bold)
                 ), 
-                child: Text('Continue', style: TextStyle(color: Color(0xFFF0E417))
+                child: Text('Start the Game!', style: TextStyle(color: Color(0xFFF0E417))
                 ),
-                onPressed: null,
+                onPressed: () {
+                  Navigator.pushNamed(context,"/videoscreen/messagescreen/firstquiz");
+                } 
               )
             )
       ]

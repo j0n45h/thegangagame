@@ -4,7 +4,7 @@ import 'package:thegangagame/Screens/Common/input_field.dart';
 import 'package:thegangagame/Screens/ThirdQuiz/third_quiz_state_machine.dart';
 
 class ThirdQuiz extends StatelessWidget {
-  static const String routeName = "/firstquiz/secondquiz/thirdquiz";
+  static const String routeName = "/videoscreen/messagescreen/firstquiz/secondquiz/thirdquiz";
 
   const ThirdQuiz({Key? key}) : super(key: key);
 
