@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: VideoScreen.routeName,
+      initialRoute: ThirdQuiz.routeName,
       routes: {
         VideoScreen.routeName: (_) => const VideoScreen(),
         MessageScreen.routeName: (_) => const MessageScreen(),

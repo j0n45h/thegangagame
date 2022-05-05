@@ -14,7 +14,7 @@ class SecondQuiz extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Background(assetPath: 'assets/Quiz_2/FirstPost(QueerFormat)Kopie.svg'),
+          Background(assetPath: 'assets/Quiz_2/BGNew.svg'),
           SecondQuizStateMachine(),
           InputField2()
         ],

@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:thegangagame/Util/upper_case_text_formatter.dart';
+import 'package:flutter/services.dart';
 
 class InputField extends StatefulWidget {
   const InputField({Key? key}) : super(key: key);
@@ -22,6 +25,12 @@ class _InputFielder extends State<InputField> {
     _textController.clear();
   }
 
+  downloadFile(url) {
+  AnchorElement anchorElement = new AnchorElement(href: url);
+  anchorElement.download = "BG1";
+  anchorElement.click();
+}
+
   @override
   void dispose() {
     _textController.dispose();
@@ -31,9 +40,10 @@ class _InputFielder extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
+      width: MediaQuery.of(context).size.width * 0.3,
       alignment: Alignment.topCenter,
-      margin: const EdgeInsets.only(top: 180),
+      margin: const EdgeInsets.only(top: 150),
+      color: Colors.transparent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,41 +63,53 @@ class _InputFielder extends State<InputField> {
               ),
             ),
           ),
+          
           PinCodeTextField(
-            appContext: context,
-            length: 4,
-            onChanged: (value) => print(value),
-            autoFocus: true,
-            focusNode: _focusNode,
-            autoDismissKeyboard: true,
-            controller: _textController,
-            textStyle: const TextStyle(color: Colors.white, fontSize: 40,fontFamily: 'NovaSquare'),
-            pinTheme: PinTheme(
-              fieldHeight: MediaQuery.of(context).size.height * 0.07,
-              fieldWidth: MediaQuery.of(context).size.width * 0.07,
-              activeColor: Color(0xFFF0E417),
-              selectedColor: Color(0xFFF0E417),
-              inactiveColor: Colors.white
-            ),
-            inputFormatters: [
-              UpperCaseTextFormatter(),
-            ],
-            onCompleted: (value) {
-              setState(() {
-                if (value == requiredValue) {
-                  _feedback = 'Correct!';
-                  _correct = true;
-                  print(_feedback);
-                } else {
-                  _feedback = 'wrong!';
-                  _correct = false;
-                  print(_feedback);
-                  clearText();
-                  _focusNode.requestFocus();
-                }
-              });
-            },
-          ),
+                appContext: context,
+                length: 4,
+                onChanged: (value) => print(value),
+                autoFocus: true,
+                focusNode: _focusNode,
+                autoDismissKeyboard: true,
+                controller: _textController,
+                textStyle: const TextStyle(color: Colors.white, fontSize: 30,fontFamily: 'NovaSquare'),
+                pinTheme: PinTheme(
+                  fieldHeight: MediaQuery.of(context).size.height * 0.05,
+                  fieldWidth: MediaQuery.of(context).size.width * 0.05,
+                  activeColor: Color(0xFFF0E417),
+                  selectedColor: Color(0xFFF0E417),
+                  inactiveColor: Colors.white
+                ),
+                inputFormatters: [
+                  UpperCaseTextFormatter(),
+                ],
+                onCompleted: (value) {
+                  setState(() {
+                    if (value == requiredValue) {
+                      _feedback = 'Correct!';
+                      _correct = true;
+                      print(_feedback);
+                    } else {
+                      _feedback = 'wrong!';
+                      _correct = false;
+                      print(_feedback);
+                      clearText();
+                      _focusNode.requestFocus();
+                    }
+                  });
+                },
+              ),
+              ElevatedButton(onPressed: () => downloadFile("assets/Letters3.png"),
+                      style: ElevatedButton.styleFrom(
+                        side: BorderSide(color: Color(0xFFF0E417)),
+                        primary: Colors.transparent,
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        textStyle: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold)), 
+                      child: Text('Download', style: TextStyle(color: Color(0xFFF0E417)),))
+           
+          
         ],
       ),
     );

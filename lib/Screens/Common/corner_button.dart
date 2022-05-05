@@ -23,7 +23,7 @@ class CornerButton extends StatelessWidget {
           child: child,
           
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.blue),
+            backgroundColor: MaterialStateProperty.all(Colors.transparent),
           ),
         ),
       ),
