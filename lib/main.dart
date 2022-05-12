@@ -5,9 +5,12 @@ import 'package:thegangagame/Screens/MessageScreen/message_screen.dart';
 import 'package:thegangagame/Screens/ThirdQuiz/third_quiz.dart';
 import 'package:thegangagame/Screens/Video/video_screen.dart';
 import 'package:thegangagame/Screens/redirect_screen.dart';
+import 'package:thegangagame/Util/quiz_tracker.dart';
 import 'Screens/SecondQuiz/second_quiz.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:thegangagame/Screens/quiz_screen.dart';
 
 Future<void> main() async {
@@ -18,6 +21,9 @@ Future<void> main() async {
   FirebaseFirestore.instance.settings = const Settings(
     persistenceEnabled: false,
   );
+
+  setUrlStrategy(PathUrlStrategy());
+
   runApp(const MyApp());
 }
 
@@ -27,21 +33,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => QuizTracker()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: VideoScreen.routeName,
+        routes: {
+          VideoScreen.routeName: (_) => const VideoScreen(),
+          MessageScreen.routeName: (_) => const MessageScreen(),
+          FirstQuiz.routeName: (_) => const FirstQuiz(),
+          SecondQuiz.routeName: (_) => const SecondQuiz(),
+          ThirdQuiz.routeName: (_) => const ThirdQuiz(),
+          //QuizScreen.routeName: (_) => const QuizScreen(),
+          RedirectScreen.routeName: (_) => const RedirectScreen(),
+        },
       ),
-      initialRoute: ThirdQuiz.routeName,
-      routes: {
-        VideoScreen.routeName: (_) => const VideoScreen(),
-        MessageScreen.routeName: (_) => const MessageScreen(),
-        FirstQuiz.routeName: (_) => const FirstQuiz(),
-        SecondQuiz.routeName: (_) => const SecondQuiz(),
-        ThirdQuiz.routeName: (_) => const ThirdQuiz(),
-        //QuizScreen.routeName: (_) => const QuizScreen(),
-        RedirectScreen.routeName: (_) => const RedirectScreen(),
-      },
     );
   }
 }

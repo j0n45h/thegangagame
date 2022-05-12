@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:thegangagame/Util/quiz_tracker.dart';
 
 class FirstQuiz extends StatefulWidget {
   static const String routeName = "/videoscreen/messagescreen/firstquiz";
@@ -132,6 +134,7 @@ class _FirstQuizState extends State<FirstQuiz> {
                                   if (value==requiredValue || value ==requiredValue2 ) {
                                   feedback = 'Correct!';
                                   print(feedback);
+                                  context.read<QuizTracker>().state = QuizState.First;
                                   Navigator.pushNamed(context,"/videoscreen/messagescreen/firstquiz/secondquiz");
 
                                 } else {

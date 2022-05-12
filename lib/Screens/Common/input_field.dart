@@ -2,6 +2,8 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
+import 'package:thegangagame/Util/quiz_tracker.dart';
 import 'package:thegangagame/Util/upper_case_text_formatter.dart';
 import 'package:flutter/services.dart';
 
@@ -88,6 +90,7 @@ class _InputFielder extends State<InputField> {
                     if (value == requiredValue) {
                       _feedback = 'Correct!';
                       _correct = true;
+                      context.read<QuizTracker>().state = QuizState.Third;
                       print(_feedback);
                     } else {
                       _feedback = 'wrong!';
