@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:thegangagame/Screens/FirstQuiz/first_quiz.dart';
+import 'package:thegangagame/Screens/Mail/mail_screen.dart';
 import 'package:thegangagame/Screens/MessageScreen/message_screen.dart';
 import 'package:thegangagame/Screens/ThirdQuiz/third_quiz.dart';
 import 'package:thegangagame/Screens/Video/video_screen.dart';
 import 'package:thegangagame/Screens/redirect_screen.dart';
 import 'package:thegangagame/Util/quiz_tracker.dart';
+import 'Screens/Mail/mail.dart';
+
 import 'Screens/SecondQuiz/second_quiz.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +45,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: VideoScreen.routeName,
+        initialRoute: MailScreen.routeName,
         routes: {
           VideoScreen.routeName: (_) => const VideoScreen(),
           MessageScreen.routeName: (_) => const MessageScreen(),
@@ -51,6 +54,8 @@ class MyApp extends StatelessWidget {
           ThirdQuiz.routeName: (_) => const ThirdQuiz(),
           //QuizScreen.routeName: (_) => const QuizScreen(),
           RedirectScreen.routeName: (_) => const RedirectScreen(),
+          
+          MailScreen.routeName: (_) => const MailScreen(),
         },
       ),
     );

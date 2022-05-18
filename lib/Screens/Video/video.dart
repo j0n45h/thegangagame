@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:html';
 
 import 'package:flutter/material.dart';
@@ -16,21 +15,23 @@ class VideoPlayer1 extends StatefulWidget {
 }
 
 class _videoPlayerState extends State<VideoPlayer1> {
-  late VideoPlayerController _videoController;
+  late VideoPlayerController _controller2;
+  String goOn = '';
 
   @override
   void initState(){
     super.initState();
     
-    _videoController = VideoPlayerController.asset('assets/Video/Intro-Site-Teaser02-h264.mp4')
+    _controller2 = VideoPlayerController.network('https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4')
     ..addListener(() {
-        final bool isPlaying = _videoController.value.isPlaying;
-        if(_videoController.value.position == Duration(seconds: 0, minutes: 0, hours: 0)) {
+        final bool isPlaying = _controller2.value.isPlaying;
+        if(_controller2.value.position == Duration(seconds: 0, minutes: 0, hours: 0)) {
             print('video Started');
         }
 
-        if(_videoController.value.position == _videoController.value.duration) {
+        if(_controller2.value.position == _controller2.value.duration) {
             print('video Ended');
+            goOn = 'Hello';
             Navigator.pushNamed(context,"/videoscreen/messagescreen");
             //if(goOn == 'Hello'){
             //  Navigator.pushNamed(context,"/videoscreen/messagescreen");
@@ -39,33 +40,28 @@ class _videoPlayerState extends State<VideoPlayer1> {
         }
 
         })
-    ..initialize().then((value) {
-        if (ModalRoute.of(context)?.isCurrent ?? false){
-          _videoController.setVolume(0);
-          _videoController.play();
-          //Future.delayed(Duration(seconds: 3)).then((_) => _videoController.setVolume(50));
-        }
+    ..initialize().then((value) 
+    => {
+      _controller2.setVolume(0),
+      _controller2.play() 
+      
       }
     );
   }
 
   void checkVideo(){
     // Implement your calls inside these conditions' bodies : 
-    if(_videoController.value.position == Duration(seconds: 0, minutes: 0, hours: 0)) {
+    if(_controller2.value.position == Duration(seconds: 0, minutes: 0, hours: 0)) {
       print('video Started');
     }
 
-    if(_videoController.value.position == _videoController.value.duration) {
+    if(_controller2.value.position == _controller2.value.duration) {
       print('video Ended');
     }
 
   }
 
-  @override
-  void dispose() {
-    _videoController.dispose();
-    super.dispose();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +69,7 @@ class _videoPlayerState extends State<VideoPlayer1> {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       color: Colors.black,
-      child: VideoPlayer(_videoController)
+      child: VideoPlayer(_controller2)
     );
   }
 }
