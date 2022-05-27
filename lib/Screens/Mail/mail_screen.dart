@@ -16,7 +16,7 @@ class MailScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Background(assetPath: 'assets/Quiz_2/FirstPost(QueerFormat)Kopie.svg'),
-          Mail()
+          const Mail()
         ],
       ),
     );
